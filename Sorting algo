@@ -1,0 +1,116 @@
+#include <iostream>
+#include <vector>
+
+// Bubble Sort
+void bubbleSort(std::vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 0; i < n - 1; ++i) {
+        for (int j = 0; j < n - i - 1; ++j) {
+            if (arr[j] > arr[j + 1]) {
+                std::swap(arr[j], arr[j + 1]);
+            }
+        }
+    }
+}
+
+// Selection Sort
+void selectionSort(std::vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 0; i < n - 1; ++i) {
+        int min_index = i;
+        for (int j = i + 1; j < n; ++j) {
+            if (arr[j] < arr[min_index]) {
+                min_index = j;
+            }
+        }
+        std::swap(arr[i], arr[min_index]);
+    }
+}
+
+// Insertion Sort
+void insertionSort(std::vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 1; i < n; ++i) {
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            --j;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+// Merge Sort
+void merge(std::vector<int>& arr, int l, int m, int r) {
+    // Merge logic here
+}
+
+void mergeSort(std::vector<int>& arr, int l, int r) {
+    if (l < r) {
+        int m = l + (r - l) / 2;
+        mergeSort(arr, l, m);
+        mergeSort(arr, m + 1, r);
+        merge(arr, l, m, r);
+    }
+}
+
+// Quick Sort
+int partition(std::vector<int>& arr, int low, int high) {
+    // Partition logic here
+}
+
+void quickSort(std::vector<int>& arr, int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+// Driver code
+int main() {
+    std::vector<int> arr = {64, 25, 12, 22, 11};
+
+    // Bubble Sort
+    bubbleSort(arr);
+    std::cout << "Bubble Sort: ";
+    for (auto const& val : arr) {
+        std::cout << val << " ";
+    }
+    std::cout << std::endl;
+
+    // Selection Sort
+    selectionSort(arr);
+    std::cout << "Selection Sort: ";
+    for (auto const& val : arr) {
+        std::cout << val << " ";
+    }
+    std::cout << std::endl;
+
+    // Insertion Sort
+    insertionSort(arr);
+    std::cout << "Insertion Sort: ";
+    for (auto const& val : arr) {
+        std::cout << val << " ";
+    }
+    std::cout << std::endl;
+
+    // Merge Sort
+    mergeSort(arr, 0, arr.size() - 1);
+    std::cout << "Merge Sort: ";
+    for (auto const& val : arr) {
+        std::cout << val << " ";
+    }
+    std::cout << std::endl;
+
+    // Quick Sort
+    quickSort(arr, 0, arr.size() - 1);
+    std::cout << "Quick Sort: ";
+    for (auto const& val : arr) {
+        std::cout << val << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
